@@ -1,0 +1,144 @@
+# ================================
+# .NET / C#
+# ================================
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.tmp
+*.temp
+*.log
+*.pid
+*.swp
+*.swo
+*.orig
+*.tmp
+*.bak
+
+# ================================
+# Visual Studio
+# ================================
+.vs/
+*.vssscc
+*.userprefs
+*.csproj.user
+*.sln.ide
+*.sln.docstates
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# ================================
+# Rider / JetBrains
+# ================================
+.idea/
+*.sln.iml
+
+# ================================
+# MonoTorrent / Torrents
+# ================================
+*.torrent
+*.magnet
+*.dht
+*.dat
+*.fastresume
+
+# ================================
+# I2P
+# ================================
+i2p/
+i2pd/
+*.i2p
+*.b32.i2p
+*.sam
+
+# ================================
+# Archives / Messages / Media
+# ================================
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+*.enc
+*.encrypted
+*.aes
+*.gcm
+
+# ================================
+# Forest specific
+# ================================
+MainFolder/
+Downloads/
+Chats/
+Messages/
+Handshakes/
+Temp/
+Logs/
+*.forest
+*.fmsg
+
+# ================================
+# User Data / Keys
+# ================================
+*.key
+*.priv
+*.pub
+*.seed
+*.mnemonic
+*.keystore
+*.p12
+*.pfx
+
+# ================================
+# OS / System
+# ================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ================================
+# Build output
+# ================================
+*.dll
+*.exe
+*.pdb
+*.xml
+*.json
+*.nupkg
+*.nuspec
+
+# ================================
+# Test files
+# ================================
+test/
+tests/
+*.test
+*.mock
+*.stub
+
+# ================================
+# Documentation / Temp
+# ================================
+docs/_build/
+docs/.doctrees/
+*.md.tmp
+*.txt.tmp
+
+# ================================
+# NuGet / Packages
+# ================================
+packages/
+*.nupkg
+*.snupkg
+
+# ================================
+# Environment
+# ================================
+.env
+.env.local
+.env.*.local
+.secrets
+credentials.json
