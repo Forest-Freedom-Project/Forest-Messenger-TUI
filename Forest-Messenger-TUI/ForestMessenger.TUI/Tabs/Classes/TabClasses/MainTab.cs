@@ -24,7 +24,6 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
         private readonly INavigationService _navigationService;
 
         private int _selectedIndex = 0;
-        private bool _animationCompleted = false;
 
         public MainTab(INavigationService navigationService)
         {
@@ -101,9 +100,7 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
 
         public async Task OnEnterAsync()
         {
-            _animationCompleted = false;
             await RenderAsync();
-            _animationCompleted = true;
         }
 
         public async Task OnLeaveAsync()
