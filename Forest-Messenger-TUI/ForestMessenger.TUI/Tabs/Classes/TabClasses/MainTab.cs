@@ -125,7 +125,6 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
         private async Task RenderHeaderAsync()
         {
             int width = Console.WindowWidth;
-            int height = Console.WindowHeight;
             var sb = new StringBuilder();
 
             sb.AppendLine($"╔{new string('═', width - 2)}╗");
@@ -145,14 +144,13 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
             {
                 Console.Write(c);
                 if (_animationCompleted) continue;
-                await Task.Delay(1);
+                await Task.Delay(TimeSpan.FromSeconds(0.001));
             }
         }
 
         private async Task RenderMenuAsync()
         {
             int width = Console.WindowWidth;
-            int height = Console.WindowHeight;
             
             Console.WriteLine();
 
@@ -178,7 +176,7 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
                     
                     Console.SetCursorPosition(width - 20, Console.CursorTop);
                     Console.ForegroundColor = ConsoleColor.DarkGray;
-                    Console.Write($"─ {description}");
+                    Console.Write($"\n  └ {description}");
                     Console.ResetColor();
                 }
                 else
@@ -218,10 +216,7 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
         }
 
         private async Task ShowAboutAsync()
-        {
-            int width = Console.WindowWidth;
-            int height = Console.WindowHeight;
-            
+        {            
             Console.Clear();
             
             string logo = @"

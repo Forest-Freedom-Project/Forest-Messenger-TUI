@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Forest-Messenger-TUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+116cc10f6496c894066c58529f3764aaac602624")]
 [assembly: System.Reflection.AssemblyProductAttribute("Forest-Messenger-TUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Forest-Messenger-TUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

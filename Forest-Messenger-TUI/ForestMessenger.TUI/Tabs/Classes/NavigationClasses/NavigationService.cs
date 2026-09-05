@@ -80,18 +80,14 @@ namespace ForestMessenger.TUI.Navigation
             int width = Console.WindowWidth;
             var sb = new StringBuilder();
 
-            // Верхняя рамка
             sb.AppendLine($"╔{new string('═', width - 2)}╗");
             
-            // Заголовок
             string title = "🌲 Forest Messenger TUI";
             sb.AppendLine($"║ {title.PadRight(width - 4)} ║");
             
-            // Вкладки
             string tabs = await BuildTabBarAsync();
             sb.AppendLine($"║ {tabs.PadRight(width - 4)} ║");
             
-            // Разделитель
             sb.AppendLine($"╠{new string('═', width - 2)}╣");
             
             Console.Write(sb.ToString());
@@ -134,7 +130,7 @@ namespace ForestMessenger.TUI.Navigation
             
             sb.AppendLine($"╚{new string('═', width - 2)}╝");
             
-            string[] hints = new[]
+            string[] hints = 
             {
                 "Tab: Переключить",
                 "↑↓: Навигация",
@@ -148,7 +144,7 @@ namespace ForestMessenger.TUI.Navigation
                 sb.Append($"{hint.PadRight(keyWidth)}");
             }
             
-            Console.SetCursorPosition(0, height - 1);
+            Console.SetCursorPosition(0, height-2);
             Console.Write(sb.ToString());
         }
 

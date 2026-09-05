@@ -24,8 +24,7 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
                 new SettingItem { Name = "Безопасность", Description = "Шифрование и приватность", Icon = "🔒" },
                 new SettingItem { Name = "Сеть", Description = "I2P, Tor, P2P", Icon = "🌐" },
                 new SettingItem { Name = "Внешний вид", Description = "Тема, цвета, шрифты", Icon = "🎨" },
-                new SettingItem { Name = "Уведомления", Description = "Звуки и уведомления", Icon = "🔔" },
-                new SettingItem { Name = "О программе", Description = "Версия, лицензия", Icon = "ℹ️" },
+                new SettingItem { Name = "Уведомления", Description = "Звуки и уведомления", Icon = "🔔" }
             };
         }
 
