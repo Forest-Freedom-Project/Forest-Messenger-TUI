@@ -61,8 +61,8 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
                             $"Открыт чат с {contact.Name}",
                             ConsoleColor.Cyan
                         );
-                        // Здесь переход в чат
-                        // await _navigationService.SwitchToTabAsync<ChatsTab>();
+                        
+                        await _navigationService.SwitchToTabAsync<ChatsTab>();
                     }
                     break;
 

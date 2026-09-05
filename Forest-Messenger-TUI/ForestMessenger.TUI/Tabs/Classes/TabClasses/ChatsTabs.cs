@@ -54,10 +54,13 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
                     if (_chats.Any())
                     {
                         var chat = _chats[_selectedIndex];
-                        _isMessageInputMode = true;
-                        _messageInput = string.Empty;
-                        await _navigationService.ShowStatusAsync($"Чат с {chat.Name}. Введите сообщение:", ConsoleColor.Cyan);
-                        await RenderAsync();
+
+                        var dmChatTab = new DmChatTab(_navigationService);
+                        dmChatTab.OpenChat(chat.Name);
+
+                        _navigationService.RegisterTab(dmChatTab);
+
+                        await _navigationService.SwitchToTabAsync(dmChatTab);
                     }
                     break;
 
@@ -152,8 +155,6 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
         public async Task RenderAsync()
         {
             Console.Clear();
-
-            int width = Console.WindowWidth;
 
             await RenderHeaderAsync();
             await RenderStatsAsync();

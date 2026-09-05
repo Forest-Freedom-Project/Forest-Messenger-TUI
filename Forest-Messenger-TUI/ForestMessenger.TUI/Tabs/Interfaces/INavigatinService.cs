@@ -6,6 +6,7 @@ namespace ForestMessenger.TUI.Tabs.Interfaces
         Task ShowStatusAsync(string message, ConsoleColor color = ConsoleColor.Green);
         Task ShowErrorAsync(string message);
         Task RenderCurrentViewAsync();
+        Task SwitchToTabAsync(ITab tab);
         void RegisterTab(ITab tab);
     }
 }

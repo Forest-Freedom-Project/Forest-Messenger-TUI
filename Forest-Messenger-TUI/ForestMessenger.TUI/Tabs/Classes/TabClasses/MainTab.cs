@@ -140,12 +140,7 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
             sb.AppendLine($"╠{new string('═', width - 2)}╣");
             
             string header = sb.ToString();
-            foreach (char c in header)
-            {
-                Console.Write(c);
-                if (_animationCompleted) continue;
-                await Task.Delay(TimeSpan.FromSeconds(0.001));
-            }
+            Console.WriteLine(header);
         }
 
         private async Task RenderMenuAsync()

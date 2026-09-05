@@ -157,7 +157,8 @@ namespace ForestMessenger.TUI.Navigation
             }
         }
 
-        private async Task SwitchToTabAsync(ITab tab)
+
+        public async Task SwitchToTabAsync(ITab tab)
         {
             if (_currentTabIndex < _tabs.Count)
             {
@@ -208,6 +209,7 @@ namespace ForestMessenger.TUI.Navigation
             await ShowStatusAsync("👋 До свидания!", ConsoleColor.Yellow);
             await Task.Delay(500);
             _isRunning = false;
+            Console.Clear();
             Environment.Exit(0);
         }
     }
