@@ -142,3 +142,6 @@ packages/
 .env.*.local
 .secrets
 credentials.json
+
+Foresy-Messenger-TUI/bin/
+Foresy-Messenger-TUI/obj/

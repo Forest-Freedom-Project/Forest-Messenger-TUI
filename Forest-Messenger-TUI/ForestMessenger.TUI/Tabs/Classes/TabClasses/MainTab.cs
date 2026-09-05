@@ -230,9 +230,9 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
             Console.WriteLine("  🌲 Forest Messenger TUI");
             Console.WriteLine("  Децентрализованный, анонимный мессенджер");
             Console.WriteLine();
-            Console.WriteLine("  Версия: 0.1.0");
+            Console.WriteLine("  Версия: Alpha 0.0.1");
             Console.WriteLine("  Лицензия: GPLv3");
-            Console.WriteLine("  GitHub: Forest-Freedom-Project/Forest-Messager");
+            Console.WriteLine("  GitHub: https://github.com/Forest-Freedom-Project/Forest-Messager-TUI");
             Console.WriteLine();
             Console.WriteLine("  Нажмите любую клавишу для возврата...");
             

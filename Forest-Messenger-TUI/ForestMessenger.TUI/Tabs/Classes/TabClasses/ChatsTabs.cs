@@ -32,56 +32,63 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
 
         public async Task HandleInputAsync(ConsoleKeyInfo key)
         {
-            if (_isMessageInputMode)
+            try
             {
-                await HandleMessageInputAsync(key);
-                return;
-            }
+                if (_isMessageInputMode)
+                {
+                    await HandleMessageInputAsync(key);
+                    return;
+                }
 
-            switch (key.Key)
-            {
-                case ConsoleKey.UpArrow:
-                    _selectedIndex = (_selectedIndex - 1 + _chats.Count) % _chats.Count;
-                    await RenderAsync();
-                    break;
-
-                case ConsoleKey.DownArrow:
-                    _selectedIndex = (_selectedIndex + 1) % _chats.Count;
-                    await RenderAsync();
-                    break;
-
-                case ConsoleKey.Enter:
-                    if (_chats.Any())
-                    {
-                        var chat = _chats[_selectedIndex];
-
-                        var dmChatTab = new DmChatTab(_navigationService);
-                        dmChatTab.OpenChat(chat.Name);
-
-                        _navigationService.RegisterTab(dmChatTab);
-
-                        await _navigationService.SwitchToTabAsync(dmChatTab);
-                    }
-                    break;
-
-                case ConsoleKey.R:
-                    if (key.Modifiers == ConsoleModifiers.Control)
-                    {
-                        await RefreshChatsAsync();
-                    }
-                    break;
-
-                case ConsoleKey.Escape:
-                    if (_isMessageInputMode)
-                    {
-                        _isMessageInputMode = false;
+                switch (key.Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        _selectedIndex = (_selectedIndex - 1 + _chats.Count) % _chats.Count;
                         await RenderAsync();
-                    }
-                    else
-                    {
-                        await _navigationService.SwitchToTabAsync<MainTab>();
-                    }
-                    break;
+                        break;
+
+                    case ConsoleKey.DownArrow:
+                        _selectedIndex = (_selectedIndex + 1) % _chats.Count;
+                        await RenderAsync();
+                        break;
+
+                    case ConsoleKey.Enter:
+                        if (_chats.Any())
+                        {
+                            var chat = _chats[_selectedIndex];
+
+                            var dmChatTab = new DmChatTab(_navigationService);
+                            dmChatTab.OpenChat(chat.Name);
+
+                            _navigationService.RegisterTab(dmChatTab);
+
+                            await _navigationService.SwitchToTabAsync(dmChatTab);
+                        }
+                        break;
+
+                    case ConsoleKey.R:
+                        if (key.Modifiers == ConsoleModifiers.Control)
+                        {
+                            await RefreshChatsAsync();
+                        }
+                        break;
+
+                    case ConsoleKey.Escape:
+                        if (_isMessageInputMode)
+                        {
+                            _isMessageInputMode = false;
+                            await RenderAsync();
+                        }
+                        else
+                        {
+                            await _navigationService.SwitchToTabAsync<MainTab>();
+                        }
+                        break;
+                }
+            }
+            catch
+            {
+
             }
         }
 
@@ -191,8 +198,19 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
             int width = Console.WindowWidth;
             int totalUnread = _chats.Sum(c => c.UnreadCount);
 
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine($"║ Всего чатов: {_chats.Count}  |  Непрочитанных: {totalUnread} ║");
+            var sb = new StringBuilder();
+
+            string[] hints =
+            {
+                $"Всего чатов: {_chats.Count}",
+                $"Непрочитанных: {totalUnread}"
+            };
+
+            sb.Append($"║ {string.Join("  │  ", hints)} ");
+            sb.Append(new string(' ', Math.Max(0, width - sb.Length - 1)));
+            sb.Append("║");
+
+            Console.WriteLine(sb.ToString());
             Console.WriteLine($"╠{new string('═', width - 2)}╣");
             Console.ResetColor();
         }
@@ -205,8 +223,22 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
             if (!_chats.Any())
             {
                 Console.ForegroundColor = ConsoleColor.DarkGray;
-                Console.WriteLine("║ Нет активных чатов.                                 ║");
+
+                var sb = new StringBuilder();
+
+                string[] hints =
+                {
+                    $"Нет активных чатов.",
+                };
+
+                sb.Append($"║ {string.Join("  │  ", hints)} ");
+                sb.Append(new string(' ', Math.Max(0, width - sb.Length - 1)));
+                sb.Append("║");
+
+                Console.WriteLine(sb.ToString());
+                Console.WriteLine($"╠{new string('═', width - 2)}╣");
                 Console.ResetColor();
+
                 return;
             }
 
@@ -219,12 +251,10 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
                 var chat = _chats[i];
                 bool isSelected = (i == _selectedIndex);
 
-                string unreadMark = chat.UnreadCount > 0 ? $"● {chat.UnreadCount}" : "  ";
+                string unreadMark = chat.UnreadCount > 0 ? $"● {chat.UnreadCount}" : "";
                 string timeStr = chat.Time.ToString("HH:mm");
 
-                string line = $"  {chat.Name}".PadRight(25);
-                line += $"{chat.LastMessage}".PadRight(width - 45);
-                line += $"{timeStr}".PadRight(10);
+                string line = $"  {chat.Name}".PadRight(25) + $"{chat.LastMessage}".PadRight(width - 45) + $"{timeStr}".PadRight(10);
 
                 if (isSelected)
                 {
@@ -273,7 +303,7 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
             }
 
             sb.Append($"└ {string.Join("  │  ", hints)} ");
-            sb.Append(new string(' ', Math.Max(0, width - sb.Length - 2)));
+            sb.Append(new string(' ', Math.Max(0, width - sb.Length - 1)));
             sb.Append("┘");
 
             Console.ForegroundColor = ConsoleColor.DarkGray;

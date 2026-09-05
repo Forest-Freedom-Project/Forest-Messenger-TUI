@@ -31,40 +31,47 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
 
         public async Task HandleInputAsync(ConsoleKeyInfo key)
         {
-            switch (key.Key)
+            try
             {
-                case ConsoleKey.UpArrow:
-                    _selectedIndex = (_selectedIndex - 1 + _channels.Count) % _channels.Count;
-                    await RenderAsync();
-                    break;
+                switch (key.Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        _selectedIndex = (_selectedIndex - 1 + _channels.Count) % _channels.Count;
+                        await RenderAsync();
+                        break;
 
-                case ConsoleKey.DownArrow:
-                    _selectedIndex = (_selectedIndex + 1) % _channels.Count;
-                    await RenderAsync();
-                    break;
+                    case ConsoleKey.DownArrow:
+                        _selectedIndex = (_selectedIndex + 1) % _channels.Count;
+                        await RenderAsync();
+                        break;
 
-                case ConsoleKey.Enter:
-                    if (_channels.Any())
-                    {
-                        var channel = _channels[_selectedIndex];
-                        await _navigationService.ShowStatusAsync(
-                            $"📢 Подписка на канал {channel.Name} (в разработке)",
-                            ConsoleColor.Cyan
-                        );
-                    }
-                    break;
+                    case ConsoleKey.Enter:
+                        if (_channels.Any())
+                        {
+                            var channel = _channels[_selectedIndex];
+                            await _navigationService.ShowStatusAsync(
+                                $"📢 Подписка на канал {channel.Name} (в разработке)",
+                                ConsoleColor.Cyan
+                            );
+                        }
+                        break;
 
-                case ConsoleKey.F1:
-                    await ShowAllChannelsAsync();
-                    break;
+                    case ConsoleKey.F1:
+                        await ShowAllChannelsAsync();
+                        break;
 
-                case ConsoleKey.F2:
-                    await ShowSubscribedChannelsAsync();
-                    break;
+                    case ConsoleKey.F2:
+                        await ShowSubscribedChannelsAsync();
+                        break;
 
-                case ConsoleKey.Escape:
-                    await _navigationService.SwitchToTabAsync<MainTab>();
-                    break;
+                    case ConsoleKey.Escape:
+                        await _navigationService.SwitchToTabAsync<MainTab>();
+                        break;
+                }
+            }
+            catch
+            {
+                
             }
         }
 
@@ -91,9 +98,7 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
         public async Task RenderAsync()
         {
             Console.Clear();
-            
-            int width = Console.WindowWidth;
-            
+                        
             await RenderHeaderAsync();
             await RenderStatsAsync();
             await RenderChannelsAsync();
@@ -118,9 +123,19 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
         private async Task RenderStatsAsync()
         {
             int width = Console.WindowWidth;
+
+            var sb = new StringBuilder();
+
+            string[] hints =
+            {
+                $"Всего каналов: {_channels.Count}  "
+            };
+
+            sb.Append($"║ {string.Join("  │  ", hints)} ");
+            sb.Append(new string(' ', Math.Max(0, width - sb.Length - 1)));
+            sb.Append("║");
             
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine($"║ Всего каналов: {_channels.Count}  |  Всего подписчиков: {_channels.Sum(c => c.Subscribers)} ║");
+            Console.WriteLine(sb.ToString());            
             Console.WriteLine($"╠{new string('═', width - 2)}╣");
             Console.ResetColor();
         }
@@ -133,7 +148,21 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
             if (!_channels.Any())
             {
                 Console.ForegroundColor = ConsoleColor.DarkGray;
-                Console.WriteLine("║ Нет доступных каналов.                               ║");
+
+                var sb = new StringBuilder();
+
+                string[] hints =
+                {
+                $"Нет доступных каналов."
+                };
+
+                sb.Append($"║ {string.Join("  │  ", hints)} ");
+                sb.Append(new string(' ', Math.Max(0, width - sb.Length - 1)));
+                sb.Append("║");
+
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine(sb.ToString());
+                Console.WriteLine($"╠{new string('═', width - 2)}╣");
                 Console.ResetColor();
                 return;
             }
@@ -184,7 +213,7 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
             };
 
             sb.Append($"└ {string.Join("  │  ", hints)} ");
-            sb.Append(new string(' ', Math.Max(0, width - sb.Length - 2)));
+            sb.Append(new string(' ', Math.Max(0, width - sb.Length - 1)));
             sb.Append("┘");
 
             Console.ForegroundColor = ConsoleColor.DarkGray;

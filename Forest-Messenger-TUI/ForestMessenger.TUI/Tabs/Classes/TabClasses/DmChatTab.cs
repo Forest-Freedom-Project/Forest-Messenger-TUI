@@ -122,7 +122,7 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
 
         private async Task SimulateReplyAsync()
         {
-            await Task.Delay(1000);
+            await Task.Delay(10);
             
             var replies = new[]
             {
@@ -192,7 +192,7 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
 
         private async Task RenderMessagesAsync(int width, int height)
         {
-            int maxMessages = height - 8;
+            int maxMessages = height - 11;
             int totalMessages = _messages.Count;
 
             int startIndex = Math.Max(0, totalMessages - maxMessages - _scrollOffset);
@@ -200,7 +200,7 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
 
             if (totalMessages < maxMessages)
             {
-                int emptyLines = maxMessages - totalMessages - 3;
+                int emptyLines = maxMessages - totalMessages - 1;
                 for (int i = 0; i < emptyLines; i++)
                 {
                     Console.WriteLine($"║{"".PadRight(width - 2)}║");
