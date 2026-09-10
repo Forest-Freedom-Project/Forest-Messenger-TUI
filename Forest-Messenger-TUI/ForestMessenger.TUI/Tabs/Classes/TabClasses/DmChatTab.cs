@@ -116,36 +116,7 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
             _scrollOffset = 0;
 
             await RenderAsync();
-
-            await SimulateReplyAsync();
-        }
-
-        private async Task SimulateReplyAsync()
-        {
-            await Task.Delay(10);
-            
-            var replies = new[]
-            {
-                "Понял!",
-                "Интересно...",
-                "Да, согласен",
-                "Хорошо, договорились",
-                "Спасибо за информацию!",
-                "Отлично!"
-            };
-
-            var reply = new MessageItem
-            {
-                Sender = _contactName,
-                Text = replies[new Random().Next(replies.Length)],
-                Time = DateTime.Now,
-                IsOwn = false
-            };
-
-            _messages.Add(reply);
-            _scrollOffset = 0;
-            await RenderAsync();
-        }
+        }       
 
         public async Task OnEnterAsync()
         {

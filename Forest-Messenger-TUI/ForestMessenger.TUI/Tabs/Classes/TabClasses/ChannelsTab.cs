@@ -16,17 +16,7 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
 
         public ChannelsTab(INavigationService navigationService)
         {
-            _navigationService = navigationService;
-            
-            _channels = new List<ChannelItem>
-            {
-                new ChannelItem { Name = "Новости мира", Subscribers = 1234, Description = "Глобальные новости", Category = "Новости" },
-                new ChannelItem { Name = "Tech News", Subscribers = 890, Description = "Технологические новости", Category = "Технологии" },
-                new ChannelItem { Name = "Крипто-обзор", Subscribers = 567, Description = "Обзор криптовалют", Category = "Финансы" },
-                new ChannelItem { Name = "Музыкальный канал", Subscribers = 345, Description = "Новые релизы музыки", Category = "Музыка" },
-                new ChannelItem { Name = "Игровые новости", Subscribers = 234, Description = "Игровая индустрия", Category = "Игры" },
-                new ChannelItem { Name = "Наука и космос", Subscribers = 678, Description = "Научные открытия", Category = "Наука" },
-            };
+            _navigationService = navigationService;  
         }
 
         public async Task HandleInputAsync(ConsoleKeyInfo key)

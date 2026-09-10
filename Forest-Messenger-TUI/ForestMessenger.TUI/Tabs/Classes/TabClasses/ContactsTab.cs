@@ -19,18 +19,6 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
         public ContactsTab(INavigationService navigationService)
         {
             _navigationService = navigationService;
-
-            _contacts = new List<ContactItem>
-            {
-                new ContactItem { Name = "Alice", Status = "Онлайн", LastSeen = DateTime.Now, IsOnline = true },
-                new ContactItem { Name = "Bob", Status = "Офлайн", LastSeen = DateTime.Now.AddMinutes(-5), IsOnline = false },
-                new ContactItem { Name = "Charlie", Status = "Офлайн", LastSeen = DateTime.Now.AddHours(-2), IsOnline = false },
-                new ContactItem { Name = "David", Status = "Онлайн", LastSeen = DateTime.Now, IsOnline = true },
-                new ContactItem { Name = "Eve", Status = "Онлайн", LastSeen = DateTime.Now, IsOnline = true },
-                new ContactItem { Name = "Frank", Status = "Офлайн", LastSeen = DateTime.Now.AddDays(-1), IsOnline = false },
-                new ContactItem { Name = "Grace", Status = "Офлайн", LastSeen = DateTime.Now.AddMinutes(-15), IsOnline = false },
-                new ContactItem { Name = "Henry", Status = "Онлайн", LastSeen = DateTime.Now, IsOnline = true },
-            };
         }
 
         public async Task HandleInputAsync(ConsoleKeyInfo key)

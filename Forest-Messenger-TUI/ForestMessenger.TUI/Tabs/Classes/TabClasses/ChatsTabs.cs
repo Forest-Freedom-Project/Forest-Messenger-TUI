@@ -19,15 +19,6 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
         public ChatsTab(INavigationService navigationService)
         {
             _navigationService = navigationService;
-
-            _chats = new List<ChatItem>
-            {
-                new ChatItem { Name = "Alice", LastMessage = "Привет! Как дела?", Time = DateTime.Now.AddMinutes(-2), UnreadCount = 3 },
-                new ChatItem { Name = "Bob", LastMessage = "Завтра встреча в 10", Time = DateTime.Now.AddHours(-1), UnreadCount = 1 },
-                new ChatItem { Name = "Charlie", LastMessage = "Спасибо!", Time = DateTime.Now.AddHours(-3), UnreadCount = 0 },
-                new ChatItem { Name = "Группа: Работа", LastMessage = "Документы готовы", Time = DateTime.Now.AddHours(-5), UnreadCount = 5 },
-                new ChatItem { Name = "Группа: Семья", LastMessage = "Все на выходные?", Time = DateTime.Now.AddDays(-1), UnreadCount = 0 },
-            };
         }
 
         public async Task HandleInputAsync(ConsoleKeyInfo key)

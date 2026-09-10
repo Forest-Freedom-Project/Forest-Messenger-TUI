@@ -16,16 +16,7 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
 
         public SettingsTab(INavigationService navigationService)
         {
-            _navigationService = navigationService;
-
-            _settings = new List<SettingItem>
-            {
-                new SettingItem { Name = "Профиль", Description = "Настройки профиля", Icon = "👤" },
-                new SettingItem { Name = "Безопасность", Description = "Шифрование и приватность", Icon = "🔒" },
-                new SettingItem { Name = "Сеть", Description = "I2P, Tor, P2P", Icon = "🌐" },
-                new SettingItem { Name = "Внешний вид", Description = "Тема, цвета, шрифты", Icon = "🎨" },
-                new SettingItem { Name = "Уведомления", Description = "Звуки и уведомления", Icon = "🔔" }
-            };
+            _navigationService = navigationService;            
         }
 
         public async Task HandleInputAsync(ConsoleKeyInfo key)
@@ -77,8 +68,6 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
         public async Task RenderAsync()
         {
             Console.Clear();
-
-            int width = Console.WindowWidth;
 
             await RenderHeaderAsync();
             await RenderSettingsAsync();
