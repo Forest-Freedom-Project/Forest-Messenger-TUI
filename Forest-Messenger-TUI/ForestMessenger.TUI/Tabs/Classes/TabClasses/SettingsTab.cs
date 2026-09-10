@@ -97,7 +97,19 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
             if (!_settings.Any())
             {
                 Console.ForegroundColor = ConsoleColor.DarkGray;
-                Console.WriteLine("║ Нет настроек.                                       ║");
+                var sb = new StringBuilder();
+
+                string[] hints =
+                {
+                    $"Нет доступных настроек."
+                };
+
+                sb.Append($"║ {string.Join("  │  ", hints)} ");
+                sb.Append(new string(' ', Math.Max(0, width - sb.Length - 1)));
+                sb.Append("║");
+
+                Console.WriteLine(sb.ToString());
+                Console.WriteLine($"╠{new string('═', width - 2)}╣");
                 Console.ResetColor();
                 return;
             }
@@ -145,7 +157,7 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
             };
 
             sb.Append($"└ {string.Join("  │  ", hints)} ");
-            sb.Append(new string(' ', Math.Max(0, width - sb.Length - 2)));
+            sb.Append(new string(' ', Math.Max(0, width - sb.Length - 1)));
             sb.Append("┘");
 
             Console.ForegroundColor = ConsoleColor.DarkGray;

@@ -143,7 +143,7 @@ namespace ForestMessenger.TUI.Tabs.Classes.TabClasses
 
                 string[] hints =
                 {
-                $"Нет доступных каналов."
+                    $"Нет доступных каналов."
                 };
 
                 sb.Append($"║ {string.Join("  │  ", hints)} ");
